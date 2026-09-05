@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <base href="../" />
+    <title>Cards: Gift</title>
+    <link rel="stylesheet" href="css/bingo-cards.css" />
+    <link rel="stylesheet" href="css/images.css" />
+    <link rel="stylesheet" href="SharedWebBoardGame/css/cards.css" />
+    <link rel="stylesheet" href="SharedWebBoardGame/css/main.css" />
+    <link rel="stylesheet" href="SharedWebBoardGame/css/image.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Bree+Serif&family=Kalam:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <style type="text/css"></style>
+  </head>
+
+  <body id="body">
+    <!-- configure Dojo -->
+    <script>
+      // Instead of using data-dojo-config, we're creating a dojoConfig
+      // object *before* we load dojo.js; they're functionally identical,
+      // it's just easier to read this approach with a larger configuration.
+      var dojoConfig = {
+        baseUrl: ".",
+        async: true,
+        // This code registers the correct location of the "demo"
+        // package so we can load Dojo from the CDN whilst still
+        // being able to load local modules
+        packages: [
+          { name: "dojo", location: "../../bower_components/dojo" },
+          { name: "javascript", location: "javascript" },
+          {
+            name: "sharedJavascript",
+            location: "SharedWebBoardgame/javascript",
+          },
+        ],
+      };
+    </script>
+    <!-- load Dojo -->
+    <script src="../../bower_components/dojo/dojo.js"></script>
+
+    <script>
+      require([
+        "dojo/dom",
+        "sharedJavascript/debugLog",
+        "sharedJavascript/systemConfigs",
+        "javascript/bingoCards",
+      ], function (dom, debugLogModule, systemConfigs, bingoCards) {
+        var debugLog = debugLogModule.debugLog;
+
+        var sc = systemConfigs.getCardSystemConfigs();
+        systemConfigs.setSystemConfigs(sc);
+
+        var bodyNode = dom.byId("body");
+        debugLog("Adding bingo cards");
+        bingoCards.addBingoCards(bodyNode, 100);
+      });
+    </script>
+  </body>
+</html>
