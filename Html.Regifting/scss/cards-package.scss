@@ -27,6 +27,17 @@
 }
 
 
+.card.package.front.pattern-trees {
+  background: url('../images/cards/pattern-trees.png') no-repeat center center;
+  background-size: cover;
+}
+
+.card.package.front.pattern-stripes {
+  background: url('../images/cards/pattern-stripes.png') no-repeat center center;
+  background-size: cover;
+}
+
+
 .card.package.front {
   display: flex;
   flex-direction: column;
@@ -34,6 +45,7 @@
   justify-content: center;
   box-sizing: border-box;
   gap: 10px;
+  position: relative;
 
   border: 3px solid #d7d6d1;
   border-radius: 12px;
@@ -42,27 +54,29 @@
     inset 0 0 0 7px #d7d6d1,
     0 4px 10px rgba(0, 0, 0, 0.3);
 
-
   .pseudo-image {
-    height: 90px;
-    width: 90px;
+    height: 100px;
+    width: 100px;
     filter: drop-shadow(0 6px 5px rgba(0, 0, 0, 0.5));
   }
 
-  .bows {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  .pseudo-image.property-container {
+    height: 90%;
+    width: 90%;
+    z-index: 10;
+  }
 
-    .pseudo-image.bow-count-1 {
-      height: 90px;
-      width: 90px;
-    }
+  .pseudo-image.property-bow-color {
+    position: absolute;
+    bottom: 50px;
+    left: 20px;
+    z-index: 20;
+  }
 
-    .pseudo-image.bow-count-2 {
-      height: 70px;
-      width: 70px;
-    }
+  .pseudo-image.property-decoration {
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+    z-index: 20;
   }
 }

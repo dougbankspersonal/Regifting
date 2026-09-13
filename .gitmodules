@@ -7,3 +7,6 @@
 [submodule "Html.FamilyTriangle/SharedWebBoardgame"]
 	path = Html.FamilyTriangle/SharedWebBoardgame
 	url = https://github.com/dougbankspersonal/SharedWebBoardgame.git
+[submodule "Html.Regifting/SharedWebBoardgame"]
+	path = Html.Regifting/SharedWebBoardgame
+	url = https://github.com/dougbankspersonal/SharedWebBoardgame.git

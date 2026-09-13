@@ -3,41 +3,37 @@ define([
   "sharedJavascript/debugLog",
   "sharedJavascript/htmlUtils",
   "javascript/cardsPackageData",
+  "javascript/gameInfo",
+  "javascript/utils",
   "dojo/domReady!",
-], function (cards, debugLogModule, htmlUtils, cardsPackageData) {
+], function (
+  cards,
+  debugLogModule,
+  htmlUtils,
+  cardsPackageData,
+  gameInfo,
+  utils,
+) {
   var debugLog = debugLogModule.debugLog;
 
   function addCardFront(parent, index) {
     var cardConfigs = cardsPackageData.getCardConfigs();
     var cardConfig = cards.getCardConfigAtIndex(cardConfigs, index);
+
+    // apply pattern to the whole card.
+    var patternValue = cardConfig[gameInfo.packageProperties.Pattern];
     var cardFrontNode = cards.addCardFront(
       parent,
-      ["package", cardConfig.Color],
+      ["package", patternValue, cardConfig.Color],
       "package",
     );
 
-    // Bow color and count.
-    var bowsNode = htmlUtils.addDiv(cardFrontNode, ["bows"], "package-bows");
-    for (var i = 0; i < cardConfig.BowCount; i++) {
-      htmlUtils.addImage(
-        bowsNode,
-        ["bow", "bow-count-" + cardConfig.BowCount, cardConfig.BowColor],
-        "bow-color",
-      );
-    }
-
-    htmlUtils.addImage(
+    utils.addPropertiesToNode(
       cardFrontNode,
-      ["decoration", cardConfig.Decoration],
-      "decoration",
+      gameInfo.packagePropertiesArray,
+      cardConfig,
+      gameInfo.deckTypes.Package,
     );
-
-    htmlUtils.addImage(
-      cardFrontNode,
-      ["container", cardConfig.Container],
-      "container",
-    );
-
     return cardFrontNode;
   }
 

@@ -1,7 +1,11 @@
+.card.gift.front,
 .card.gift.back {
-  background: #17452f;
   border: 3px solid #c9a84a;
   border-radius: 12px;
+}
+
+.card.gift.back {
+  background: #17452f;
   box-shadow: inset 0 0 0 5px #17452f, inset 0 0 0 7px #c9a84a, 0 4px 10px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
@@ -17,16 +21,24 @@
   text-shadow: 1px 1px 0 #8d7025, 2px 3px 4px rgba(0, 0, 0, 0.35);
 }
 
-.card.gift.front.color-green {
-  border: 3px solid #c9a84a;
-  border-radius: 12px;
-  box-shadow: inset 0 0 0 5px #17452f, inset 0 0 0 7px #c9a84a, 0 4px 10px rgba(0, 0, 0, 0.3);
+.card.gift.front.color-red {
+  box-shadow: inset 0 0 0 5px #742b2b, inset 0 0 0 7px #c9a84a, 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.card.gift.front.color-red {
-  border: 3px solid #c9a84a;
-  border-radius: 12px;
-  box-shadow: inset 0 0 0 5px #451717, inset 0 0 0 7px #c9a84a, 0 4px 10px rgba(0, 0, 0, 0.3);
+.card.gift.front.color-green {
+  box-shadow: inset 0 0 0 5px #307755, inset 0 0 0 7px #c9a84a, 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card.gift.front.color-blue {
+  box-shadow: inset 0 0 0 5px #28205f, inset 0 0 0 7px #c9a84a, 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card.gift.front.color-white {
+  box-shadow: inset 0 0 0 5px #cfcecf, inset 0 0 0 7px #c9a84a, 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card.gift.front.fruitcake {
+  box-shadow: inset 0 0 0 5px #a98637, inset 0 0 0 7px #c9a84a, 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .card.gift.front {
@@ -36,81 +48,120 @@
   justify-content: center;
   box-sizing: border-box;
   color: #000;
-  border: 10px solid #000;
-  background-image: url("../images/cards/parchment.png");
+  background-image: url("../images/cards/snow.png");
+  position: relative;
 }
-.card.gift.front .text {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 24px;
+.card.gift.front .serial-number {
+  position: absolute;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 32px;
+  font-weight: bold;
+  color: #000;
+  bottom: 10px;
+  right: 10px;
 }
-.card.gift.front .text.brand {
-  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6), 0 2px 3px rgba(0, 0, 0, 0.25);
-  text-decoration: underline solid;
+.card.gift.front .sentiment-wrapper {
+  top: 50%;
+  z-index: 20;
+  position: absolute;
+  padding-top: 3px;
+  padding-right: 3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  background: #5a4634;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 6px 5px rgba(0, 0, 0, 0.5));
+  clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);
 }
-.card.gift.front .text.brand-plum-and-thistle {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #1b0e2a;
-}
-.card.gift.front .text.brand-aly-smith {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #4f2511;
-}
-.card.gift.front .text.style-modern {
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
-  color: #363535;
-}
-.card.gift.front .text.style-country {
-  font-family: "Rye", serif;
-  font-weight: 400;
-  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5), 2px 2px 3px rgba(0, 0, 0, 0.28);
-  color: #6f1a0b;
-}
-.card.gift.front .text.color {
-  font-family: "Anton", sans-serif;
-  text-transform: uppercase;
+.card.gift.front .sentiment-wrapper .property-sentiment {
+  padding: 18px 30px;
+  display: flex;
+  align-items: center;
+  /* smaller version of the same shape */
+  clip-path: polygon(17px 0, calc(100% - 17px) 0, 100% 17px, 100% calc(100% - 17px), calc(100% - 17px) 100%, 17px 100%, 0 calc(100% - 17px), 0 17px);
+  font-size: 32px;
+  text-align: center;
+  color: #3b3026;
+  font-weight: bold;
   letter-spacing: 0.02em;
 }
-.card.gift.front .text.color-green {
-  color: #336c33;
+.card.gift.front .sentiment-wrapper .property-sentiment.sentiment-home {
+  font-family: "Rye", serif;
+  background: linear-gradient(90deg, rgba(55, 30, 12, 0.16) 0%, transparent 12%, rgba(255, 215, 160, 0.1) 27%, transparent 43%, rgba(65, 35, 15, 0.13) 57%, transparent 72%, rgba(255, 220, 160, 0.08) 88%), repeating-linear-gradient(1deg, #a77b4d 0px, #a77b4d 4px, #91683f 6px, #b88c59 9px, #9d7247 14px);
 }
-.card.gift.front .text.color-red {
-  color: #952c2c;
+.card.gift.front .sentiment-wrapper .property-sentiment.sentiment-peace {
+  font-family: "Alfa Slab One", serif;
+  background: linear-gradient(90deg, rgba(90, 80, 65, 0.1) 0%, transparent 12%, rgba(255, 255, 255, 0.18) 25%, transparent 40%, rgba(80, 70, 55, 0.08) 55%, transparent 72%, rgba(255, 255, 255, 0.14) 88%), repeating-linear-gradient(2deg, #ddd8c8 0px, #ddd8c8 5px, #c9c3b2 7px, #e7e2d5 10px, #d1cbbb 15px);
 }
-.card.gift.front .text.sentiment {
-  font-family: "Kalam", cursive;
-  font-weight: 700;
+.card.gift.front .sentiment-wrapper .property-sentiment.sentiment-love {
+  font-family: Georgia, serif;
+  background: linear-gradient(90deg, rgba(90, 55, 25, 0.12) 0%, transparent 8%, rgba(255, 230, 180, 0.12) 22%, transparent 35%, rgba(80, 45, 20, 0.1) 48%, transparent 65%, rgba(255, 225, 170, 0.1) 80%, transparent 92%), repeating-linear-gradient(2deg, #c8a878 0px, #c8a878 5px, #b99767 6px, #d0b180 9px, #c09e6e 13px);
 }
-.card.gift.front .text.scent {
-  color: #333;
-  position: relative;
-  z-index: 1;
+.card.gift.front .sentiment-wrapper .property-sentiment.sentiment-wine {
+  font-family: "Courier New", monospace;
+  background: linear-gradient(90deg, rgba(55, 55, 45, 0.14) 0%, transparent 11%, rgba(230, 225, 200, 0.13) 25%, transparent 40%, rgba(65, 65, 55, 0.12) 56%, transparent 72%, rgba(225, 220, 195, 0.1) 88%), repeating-linear-gradient(1deg, #9a9381 0px, #9a9381 5px, #878170 7px, #aaa38e 10px, #918a77 15px);
 }
-.card.gift.front .text.scent::before {
-  content: "";
+.card.gift.front .property-item.pseudo-image {
   position: absolute;
-  inset: -20px;
-  filter: blur(25px);
-  border-radius: 50%;
-  z-index: -1;
+  z-index: 10;
+  aspect-ratio: 1/1;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
 }
-.card.gift.front .text.scent.scent-lavender::before {
-  background: rgba(190, 140, 255, 0.45);
+.card.gift.front .property-item.pseudo-image.item-mug {
+  top: 30px;
 }
-.card.gift.front .text.scent.scent-pine::before {
-  background: rgba(54, 145, 86, 0.4509803922);
+.card.gift.front .brand-wrapper {
+  width: 80%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
 }
-.card.gift.front .pseudo-image {
-  height: 76px;
-  width: 76px;
-  filter: drop-shadow(0 6px 5px rgba(0, 0, 0, 0.5));
+.card.gift.front .brand-wrapper .property-brand {
+  font-size: 36px;
+}
+.card.gift.front .brand-wrapper .property-brand.brand-plum-and-thistle {
+  font-size: 26px;
+}
+.card.gift.front .brand-wrapper.brand-plum-and-thistle {
+  background: #d8b8c5;
+  border: 4px solid #6d4059;
+  border-radius: 14px;
+  color: #49313e;
+  font-family: "Amatic SC", cursive;
+}
+.card.gift.front .brand-wrapper.brand-evelyn {
+  background: #eee2c8;
+  border: 4px solid #92734e;
+  border-radius: 14px;
+  color: #5a4938;
+  font-family: "Cormorant Garamond", serif;
+}
+.card.gift.front .brand-wrapper.brand-soren {
+  background: #cbd5d3;
+  border: 4px solid #536663;
+  border-radius: 14px;
+  color: #334340;
+  font-family: "Special Elite", monospace;
+}
+.card.gift.front .brand-wrapper.brand-hearthside {
+  background: #c98f78;
+  border: 4px solid #713f35;
+  border-radius: 14px;
+  color: #4b2925;
+  font-family: "Josefin Slab", serif;
+}
+.card.gift.front .title {
+  position: absolute;
+  font-size: 22px;
+  top: 25px;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 /*# sourceMappingURL=cards-gift.css.map */

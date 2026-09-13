@@ -1,30 +1,28 @@
 <html>
   <head>
-    <base href="../" />
-    <title>Social Bingo</title>
-    <link rel="stylesheet" href="css/bingo-cards.css" />
-    <link rel="stylesheet" href="css/images.css" />
-    <link rel="stylesheet" href="SharedWebBoardgame/css/cards.css" />
-    <link rel="stylesheet" href="SharedWebBoardgame/css/main.css" />
-    <link rel="stylesheet" href="SharedWebBoardgame/css/image.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Bree+Serif&family=Kalam:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../SharedWebBoardGame/css/main.css" />
+    <link rel="stylesheet" href="../SharedWebBoardGame/css/image.css" />
+    <link rel="stylesheet" href="../SharedWebBoardGame/css/die.css" />
+    <link rel="stylesheet" href="../css/images.css" />
+    <link rel="stylesheet" href="../css/tokens.css" />
     <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
     <style type="text/css"></style>
   </head>
 
-  <body id="body">
+  <body class="c1 doc-content" id="body">
     <!-- configure Dojo -->
     <script>
       // Instead of using data-dojo-config, we're creating a dojoConfig
       // object *before* we load dojo.js; they're functionally identical,
       // it's just easier to read this approach with a larger configuration.
       var dojoConfig = {
-        baseUrl: ".",
+        baseUrl: "..",
         async: true,
         // This code registers the correct location of the "demo"
         // package so we can load Dojo from the CDN whilst still
@@ -40,23 +38,24 @@
       };
     </script>
     <!-- load Dojo -->
-    <script src="../../bower_components/dojo/dojo.js"></script>
+    <script src="../../../bower_components/dojo/dojo.js"></script>
 
     <script>
       require([
         "dojo/dom",
-        "sharedJavascript/debugLog",
         "sharedJavascript/systemConfigs",
-        "javascript/bingoCards",
-      ], function (dom, debugLogModule, systemConfigs, bingoCards) {
-        var debugLog = debugLogModule.debugLog;
+        "sharedJavascript/dieUtils",
+        "javascript/tokensData",
+      ], function (dom, systemConfigs, dieUtils, tokensData) {
+        systemConfigs.setSystemConfigs({});
 
-        var sc = systemConfigs.getCardSystemConfigs();
-        systemConfigs.setSystemConfigs(sc);
-
+        // Make the body node.
         var bodyNode = dom.byId("body");
-        debugLog("Adding bingo cards");
-        bingoCards.addBingoCards(bodyNode, 100);
+
+        dieUtils.addDiceNode(bodyNode, tokensData.getTokenDieConfigs(), [
+          "tokens",
+        ]);
+        return bodyNode;
       });
     </script>
   </body>

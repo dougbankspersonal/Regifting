@@ -1,69 +1,10 @@
 define([
   "sharedJavascript/cards",
   "sharedJavascript/debugLog",
+  "javascript/gameInfo",
   "dojo/domReady!",
-], function (cards, debugLogModule) {
+], function (cards, debugLogModule, gameInfo) {
   var debugLog = debugLogModule.debugLog;
-  //-----------------------------------
-  //
-  // Constants
-  //
-  //-----------------------------------
-  const gPackagePropertyBowColor = "property-bow-color";
-  const gPackagePropertyBowCount = "property-bow-count";
-  const gPackagePropertyDecoration = "property-decoration";
-  const gPackagePropertyContainer = "property-container";
-
-  const gProperties = {
-    BowColor: gPackagePropertyBowColor,
-    BowCount: gPackagePropertyBowCount,
-    Decoration: gPackagePropertyDecoration,
-    Container: gPackagePropertyContainer,
-  };
-
-  const gPropertiesArray = Object.values(gProperties);
-
-  const gBowColorSilver = "bow-color-silver";
-  const gBowColorGold = "bow-color-gold";
-
-  const gBowColors = {
-    Silver: gBowColorSilver,
-    Gold: gBowColorGold,
-  };
-  const gBowColorsArray = Object.values(gBowColors);
-
-  const gBowCountOne = 1;
-  const gBowCountTwo = 2;
-
-  const gBowCounts = {
-    One: gBowCountOne,
-    Two: gBowCountTwo,
-  };
-  const gBowCountsArray = Object.values(gBowCounts);
-
-  const gDecorationHolly = "decoration-holly";
-  const gDecorationCandyCane = "decoration-candy-cane";
-  const gDecorations = {
-    Holly: gDecorationHolly,
-    CandyCane: gDecorationCandyCane,
-  };
-  const gDecorationsArray = Object.values(gDecorations);
-
-  const gContainerBox = "container-box";
-  const gContainerBag = "container-bag";
-  const gContainers = {
-    Box: gContainerBox,
-    Bag: gContainerBag,
-  };
-  const gContainersArray = Object.values(gContainers);
-
-  const gPropertyArraysByType = {
-    BowColor: gBowColorsArray,
-    BowCount: gBowCountsArray,
-    Decoration: gDecorationsArray,
-    Container: gContainersArray,
-  };
-
   //-----------------------------------
   //
   // Global state.
@@ -78,16 +19,16 @@ define([
     gCardConfigs = [];
 
     // Just one of each possibility.
-    for (const bowColor of gBowColorsArray) {
-      for (const bowCount of gBowCountsArray) {
-        for (const decoration of gDecorationsArray) {
-          for (const container of gContainersArray) {
+    for (const bowColor of gameInfo.bowColorsArray) {
+      for (const pattern of gameInfo.patternsArray) {
+        for (const decoration of gameInfo.decorationsArray) {
+          for (const container of gameInfo.containersArray) {
             gCardConfigs.push({
-              BowColor: bowColor,
-              BowCount: bowCount,
-              Decoration: decoration,
-              Container: container,
-              count: 4,
+              [gameInfo.packageProperties.BowColor]: bowColor,
+              [gameInfo.packageProperties.Pattern]: pattern,
+              [gameInfo.packageProperties.Decoration]: decoration,
+              [gameInfo.packageProperties.Container]: container,
+              count: 6,
             });
           }
         }

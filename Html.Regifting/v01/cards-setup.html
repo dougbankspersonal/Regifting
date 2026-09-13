@@ -1,8 +1,8 @@
 <html>
   <head>
     <base href="../" />
-    <title>Cards: Gift</title>
-    <link rel="stylesheet" href="css/cards-gift.css" />
+    <title>Cards: Package</title>
+    <link rel="stylesheet" href="css/cards-setup.css" />
     <link rel="stylesheet" href="css/images.css" />
     <link rel="stylesheet" href="SharedWebBoardgame/css/cards.css" />
     <link rel="stylesheet" href="SharedWebBoardgame/css/main.css" />
@@ -10,39 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rye&display=swap"
-      rel="stylesheet"
-    />
-    <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
@@ -81,33 +49,35 @@
         "sharedJavascript/genericMeasurements",
         "sharedJavascript/htmlUtils",
         "sharedJavascript/systemConfigs",
-        "javascript/cardsGiftData",
-        "javascript/cardsGift",
+        "javascript/cardsSetupData",
+        "javascript/cardsSetup",
       ], function (
         cards,
         debugLogModule,
         genericMeasurements,
         htmlUtils,
         systemConfigs,
-        cardsGiftData,
-        cardsGift,
+        cardsSetupData,
+        cardsSetup,
       ) {
         var debugLog = debugLogModule.debugLog;
 
         var sc = systemConfigs.getCardSystemConfigs();
         systemConfigs.setSystemConfigs(sc);
 
-        var numCards = cardsGiftData.getNumCards();
+        var numCards = cardsSetupData.getNumCards();
 
-        var cardConfigs = cardsGiftData.getCardConfigs();
+        var cardConfigs = cardsSetupData.getCardConfigs();
 
         var backConfigs = [];
         var backConfig = {
-          callback: cardsGift.addCardBack,
+          callback: cardsSetup.addCardBack,
         };
         backConfigs.push(backConfig);
 
-        cards.addCards(numCards, cardsGift.addCardFront, backConfigs);
+        debugLog("html", "cardsSetupData = ", JSON.stringify(cardsSetupData));
+
+        cards.addCards(numCards, cardsSetup.addCardFront, backConfigs);
       });
     </script>
   </body>
