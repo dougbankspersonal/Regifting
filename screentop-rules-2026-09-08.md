@@ -8,9 +8,9 @@ Through a series of Christmas parties with the same group of friends, try to com
 
 ## Objective
 
-Each round players will get to add one Gift to their **Haul** of received Gifts.
+Each round players may add Gifts to their **Haul**.
 
-A Gift 3 properties:
+A Gift has 3 properties:
 
 - Item: Teddy, Mug, Candle, or Bath Salts.
 - Color: Red, Green, Blue, or White.
@@ -18,16 +18,21 @@ A Gift 3 properties:
 
 The object of the game is to create a "Perfect Set" of 4 Gifts:
 
-- Each gift is from a different player.
+- Each gift is **From** a different player.
 - For each of "Item", "Color" and "Sentiment", the values are either all the same or all different.
 
 e.g.
 
-- Red "Love" Teddy
-- Red "Peace" Teddy
-- Red "Wine" Teddy
-- Red "Home" Teddy
-  Is a perfect set: the Colors and Items are all the same, and the Sentiments are all different.
+- Red "Love" Teddy from Red Player
+- Red "Peace" Teddy from Green Player
+- Red "Wine" Teddy from Blue Player
+- Red "Home" Teddy from Yellow Player
+
+Is a perfect set:
+
+- The Colors and Items are all the same
+- The Sentiments are all different
+- Each item is from a different player.
 
 ## Concepts/Areas
 
@@ -39,9 +44,11 @@ e.g.
 
 ### Per Player
 
-- **Workspace**: Private. A container where gifts are assembled to be given to other players. This area is private: other players cannot see anything going on in there.
+- **Workspace**: Private. A container where gifts are assembled to be given to other players.
 
-- **Gift Closet**: Private (a subcontainer of the Workspace). Holds Gifts available to be given out in the next round
+- **Gift Closet**: Private. Holds Gifts available to be given out in the next round
+
+- **Queue**: Public. Holds Packages in the order they will be opened.
 
 - **Haul**: Public. The set of Gifts, paired with "From" player tokens, a player has acquired through the course of a game. A Gift in the Haul may be Public (face up) or Private (face down, only the owning player can look at it).
 
@@ -59,23 +66,20 @@ Separate the Fruitcake cards from other Gift cards.
 
 Shuffle the non-Fruitcake Gift cards.
 
-Place 3 Fruitcake cards facedown in a stack: add Gift cards until the stack totals (5 \* num players) cards.
+Place 3 Fruitcake cards facedown in a stack: add Gift cards until the stack totals (4 \* num players) cards.
 
-Divide this stack evenly among the players (each player gets 5 gifts from this stack). This forms their initial "Gift Closet".
+Deal 4 cards from this stack to each player: these cards go in the Gift Closet.
 
 Place the remaining Gift cards in a central space; this forms the Gift Draw Pile.
-
-Playes may look at the cards in their Gift Closet, but should keep them hidden from other players.
 
 ## Player setup
 
 Each player:
 
-- Takes a stack of 4 Package containers.
-- Takes 8 Player Tokens.
+- Takes a stack of 3 Package containers.
+- Takes 7 Player Tokens.
 - Gives themself a Private Gift:
-  - Draws 1 card from the Gift Draw Pile.
-  - Looks at the card
+  - Draws and looks at 1 card from the Gift Draw Pile.
   - Places it face down in their **Haul**
   - Marks it with their own player token.
 
@@ -90,102 +94,79 @@ The game is played in a series of rounds.
 Each round has the following phases, in order:
 
 - Create Packages
-- Collect and Distribute Gifts
-- Recycle
-- Resupply
-- Pass the Start Player
+- Collect Packages
+- Distribute Packages
+- Open Packages
+- Reset
 
 ## Create Packages
 
-Each player must package 4 of the 5 items in their Gift Closet to give to other players.
+Each player must package 3 of the 4 items in their Gift Closet to give to other players.
 
-All Fruitcakes in the Gift Closet must be packaged before any other Gift.
+All Fruitcakes in the Gift Closet must be packaged before any other Gifts.
 
 To Package a Gift:
 
-- Take the top Package from your Stack.
-- Place the Gift facedown on the Gift space.
+- Place the Gift facedown in one of the Packages in your Workspace.
 - Place a player token faceup on the "To" space:
   - You may give to any player other than yourself.
-  - You may not give more than one Gift to any one player.
+  - You may give multiple gifts to the same player if you wish.
 - Place your own player Token in the "From" space. Depending on the nature of the Package, it may be visible or invisible (some packages hide who they are from).
 
-## Collect and Distribute Gifts.
+## Collect Packages
 
-### Collect Gift.
-
-Starting with the starting player and proceeding clockwise, each player places their 4 Packages in Santa's Bag.
+Starting with the starting player and proceeding clockwise, each player places the Packages from their Workspace into Santa's Bag.
 
 The starting player then:
 
 - Shuffles the Packages (in the bag)
-- Removes them and spreads them in a grid so they are all visible. This is the "Package Pile".
+- Removes them and spreads them in a grid so they are all visible in the **Package Pile**.
 
-### Distribute Gifts
+## Distribute Packages
+
+Starting with the Starting player and proceeding clockwise each player selects a Package from the Pile and adds it to the topmost open space in their Queue.
+
+- If the Package Pile contains any Packages "To" the active player, they must select one of those Packages.
+- Otherwise they may select any Package, even if it is "To" another player.
+
+## Open Packages
 
 All players start "In".
 
-Starting with the Starting player and proceeding Clockwise, each "In" player may opt to Open or Pass. This continues until all presents are gone or all players have passed.
+Starting with the Starting Player and proceeding clockwise, each "In" player may either Open or Quit.
 
-#### Open
+- Open: _Only available if there are unopened Packages in Queue_. Flip the Gift card and show the "From" token if necessary. Gift and token are left in place in the queue. Player is still in.
+- Quit: Move the last-opened Gift card in the Queue, along with the "From" token, to Haul. The player is now "Out" and cannot Open any more Packages this round.
 
-- A player selects any Package from the Package Pile in the middle that is "To" them. - If there are no Package "To" them they may select any Package they want.
+### Special Cases
 
-They remove any "To" token on the Package: return to central supply.
+- If a player Opens a Fruitcake:
+  - They are now "Out".
+  - They do not add any Gifts to their Haul this round.
+  - They may take a "Secret" token.
 
-They flip the Gift and, if necessary, expose the "From" token.
+- If a player has a "Secret" Token:
+  - They may spend it at the beginning of an Open phase.
+  - When opening a Gift, if it is not a Fruitcake, they may keep the card facedown in the Queue and if/when it is moved to the Haul.
 
-If it is a Fruitcake:
-
-- The player collects a "Secret" token.
-- The player does not get to keep any Gifts this round: proceed immediately to Cleanup.
-- The player has now "Passed".
-
-If it is not a Fruitcake:
-
-- The player adds the Package (with opened Gift and exposed "From" player token) to an ordered queue of Packages they opened this round.
-
-#### Pass
-
-- The player is now "Out".
-- They keep the Gift from the latest Package in their Queue: move the Gift and the "From" token to their Haul.
-
-#### Notes on Distribution
-
-- If all Packages have been taken from the middle, any players who are still "In" must "Keep".
-- If a player has a "Secret" token, they may spend it to make one "Open" action **Private**:
-  - They opent the Package in their Workspace so that no one can see what it is.
-  - If it is a Fruitcake, they show the card and proceed with normal Fruitcake rules.
-  - Otherwise:
-    - When added to the queue, it remains facedown.
-    - If added to the Haul, it remains facedown.
-
-## Recycle
+## Reset
 
 Each player:
 
-- Remove any "From" tokens from unopened Packages in the queue: return to central supply.
-- Remove any "Gifts" from from unopened Packages in the queue: these go into the player's Gift Closet.
-- If they opened a Fruitcake, move it to their Gift Closet.
-- Shuffle any "Packages" from their queue into their stack of Packages in their workspace.
-
-Any Packages remaining in the Package Pile:
-
-- Remove To and From tokens, return to central supply.
-- Remove any Gifts, shuffling back into the main Gift deck.
-- Place empty Packages back into central Package supply.
-
-## Resupply
-
-Each player resets their Workspace:
-
-- Draw from the Gift pile into their Gift Closet until they have 5 Gifts in the closet.
-- Draw 4 Packages from central supply: stack and shuffle.
-- Take 8 player tokens.
+- Move "To" and "From" tokens left in queue to personal token supply: take more tokens until they have 6.
+- Move any "Gifts" from opened and opened Packages in the queue into their Gift Closet (thitos includes any Fruitcakes opened).
+- Place Pakcages from queue into Workspace.
+- Draw Gifts to refill Closet to 4 cards, if needed.
+- Pass Starting Player clockwise.
 
 # Game End
 
-A player wins if, at the end of a round, they can assemble a "Perfect Set" from the gifts in their Haul (including Private gifts).
+A player wins if, at the end of a round, they can assemble a "Perfect Set" from the gifts in their Haul (including Secret gifts).
+
+A perfect set is 4 gift where:
+
+- Each property (Item, Color, and Sentiment) is either "all same" or "all different"
+- Each gift is from a different player.
 
 If more than one player has a perfect set, resolve in order:
 
