@@ -18,7 +18,7 @@ A Gift has 3 properties:
 
 The object of the game is to create a "Perfect Set" of 4 Gifts:
 
-- Each gift is **From** a different player.
+- Gifts are "From" at least 3 different players.
 - For each of "Item", "Color" and "Sentiment", the values are either all the same or all different.
 
 e.g.
@@ -26,13 +26,13 @@ e.g.
 - Red "Love" Teddy from Red Player
 - Red "Peace" Teddy from Green Player
 - Red "Wine" Teddy from Blue Player
-- Red "Home" Teddy from Yellow Player
+- Red "Home" Teddy from Green Player
 
 Is a perfect set:
 
 - The Colors and Items are all the same
 - The Sentiments are all different
-- Each item is from a different player.
+- Gifts are from at least 3 different players.
 
 ## Concepts/Areas
 
@@ -124,7 +124,7 @@ The starting player then:
 
 ## Distribute Packages
 
-Starting with the Starting player and proceeding clockwise each player selects a Package from the Pile and adds it to the topmost open space in their Queue.
+Starting with the Starting player and proceeding clockwise each player selects a Package from the Pile and adds it to **any** open space in their Queue.
 
 - If the Package Pile contains any Packages "To" the active player, they must select one of those Packages.
 - Otherwise they may select any Package, even if it is "To" another player.
@@ -146,15 +146,15 @@ Starting with the Starting Player and proceeding clockwise, each "In" player may
   - They may take a "Secret" token.
 
 - If a player has a "Secret" Token:
-  - They may spend it at the beginning of an Open phase.
-  - When opening a Gift, if it is not a Fruitcake, they may keep the card facedown in the Queue and if/when it is moved to the Haul.
+  - They may spend it at the beginning of an Open Packages phase.
+  - When opening a Gift, they may look at it in secret. If it is not a Fruitcake, they may keep the card facedown in the Queue and if/when it is moved to the Haul.
 
 ## Reset
 
 Each player:
 
 - Move "To" and "From" tokens left in queue to personal token supply: take more tokens until they have 6.
-- Move any "Gifts" from opened and opened Packages in the queue into their Gift Closet (thitos includes any Fruitcakes opened).
+- Move any "Gifts" from opened and unopened Packages in the queue into their Gift Closet (this includes any Fruitcakes opened).
 - Place Pakcages from queue into Workspace.
 - Draw Gifts to refill Closet to 4 cards, if needed.
 - Pass Starting Player clockwise.
@@ -166,7 +166,7 @@ A player wins if, at the end of a round, they can assemble a "Perfect Set" from 
 A perfect set is 4 gift where:
 
 - Each property (Item, Color, and Sentiment) is either "all same" or "all different"
-- Each gift is from a different player.
+- Gifts are "From" at least 3 different players.
 
 If more than one player has a perfect set, resolve in order:
 
