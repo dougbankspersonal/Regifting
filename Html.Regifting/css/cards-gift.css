@@ -95,6 +95,10 @@
   font-family: "Alfa Slab One", serif;
   background: linear-gradient(90deg, rgba(90, 80, 65, 0.1) 0%, transparent 12%, rgba(255, 255, 255, 0.18) 25%, transparent 40%, rgba(80, 70, 55, 0.08) 55%, transparent 72%, rgba(255, 255, 255, 0.14) 88%), repeating-linear-gradient(2deg, #ddd8c8 0px, #ddd8c8 5px, #c9c3b2 7px, #e7e2d5 10px, #d1cbbb 15px);
 }
+.card.gift.front .sentiment-wrapper .property-sentiment.sentiment-joy {
+  font-family: "Bowlby One SC", serif;
+  background: linear-gradient(105deg, rgba(255, 170, 45, 0.18) 0%, transparent 14%, rgba(255, 245, 180, 0.2) 28%, transparent 42%, rgba(235, 135, 25, 0.13) 58%, transparent 74%, rgba(255, 230, 120, 0.16) 89%), repeating-linear-gradient(3deg, #e7b84f 0px, #e7b84f 4px, #d79f38 6px, #f0c968 10px, #dda942 15px);
+}
 .card.gift.front .sentiment-wrapper .property-sentiment.sentiment-love {
   font-family: Georgia, serif;
   background: linear-gradient(90deg, rgba(90, 55, 25, 0.12) 0%, transparent 8%, rgba(255, 230, 180, 0.12) 22%, transparent 35%, rgba(80, 45, 20, 0.1) 48%, transparent 65%, rgba(255, 225, 170, 0.1) 80%, transparent 92%), repeating-linear-gradient(2deg, #c8a878 0px, #c8a878 5px, #b99767 6px, #d0b180 9px, #c09e6e 13px);

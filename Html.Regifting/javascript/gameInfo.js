@@ -34,12 +34,14 @@ define([
   const gItemMug = "item-mug";
   const gItemSalts = "item-salts";
   const gItemTeddy = "item-teddy";
+  const gItemOrnament = "item-ornament";
 
   const gItems = {
     Candle: gItemCandle,
     Mug: gItemMug,
     Salts: gItemSalts,
     Teddy: gItemTeddy,
+    Ornament: gItemOrnament,
   };
   const gItemsArray = Object.values(gItems);
 
@@ -62,12 +64,14 @@ define([
   const gColorGreen = "color-green";
   const gColorBlue = "color-blue";
   const gColorWhite = "color-white";
+  const gColorGold = "color-gold";
 
   const gColors = {
     Red: gColorRed,
     Green: gColorGreen,
     Blue: gColorBlue,
     White: gColorWhite,
+    Gold: gColorGold,
   };
   const gColorsArray = Object.values(gColors);
 
@@ -75,12 +79,14 @@ define([
   const gSentimentHome = "sentiment-home";
   const gSentimentPeace = "sentiment-peace";
   const gSentimentWine = "sentiment-wine";
+  const gSentimentJoy = "sentiment-joy";
 
   const gSentiments = {
     Love: gSentimentLove,
     Home: gSentimentHome,
     Peace: gSentimentPeace,
     Wine: gSentimentWine,
+    Joy: gSentimentJoy,
   };
   const gSentimentsArray = Object.values(gSentiments);
 

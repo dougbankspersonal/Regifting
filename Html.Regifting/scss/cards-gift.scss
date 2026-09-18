@@ -169,6 +169,25 @@
           #d1cbbb 15px);
     }
 
+    .property-sentiment.sentiment-joy {
+      font-family: "Bowlby One SC", serif;
+      background:
+        linear-gradient(105deg,
+          rgba(255, 170, 45, .18) 0%,
+          transparent 14%,
+          rgba(255, 245, 180, .20) 28%,
+          transparent 42%,
+          rgba(235, 135, 25, .13) 58%,
+          transparent 74%,
+          rgba(255, 230, 120, .16) 89%),
+        repeating-linear-gradient(3deg,
+          #e7b84f 0px,
+          #e7b84f 4px,
+          #d79f38 6px,
+          #f0c968 10px,
+          #dda942 15px);
+    }
+
     .property-sentiment.sentiment-love {
       font-family: Georgia, serif;
       background:

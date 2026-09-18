@@ -27,6 +27,9 @@ define([
     if (propertyValue == gameInfo.sentiments.Home) {
       return "Home";
     }
+    if (propertyValue == gameInfo.sentiments.Joy) {
+      return "Joy";
+    }
     if (propertyValue == gameInfo.sentiments.Peace) {
       return "Peace";
     }
@@ -45,6 +48,9 @@ define([
     if (propertyValue == gameInfo.colors.White) {
       return "White";
     }
+    if (propertyValue == gameInfo.colors.Gold) {
+      return "Gold";
+    }
     if (propertyValue == gameInfo.items.Mug) {
       return "Mug";
     }
@@ -56,6 +62,9 @@ define([
     }
     if (propertyValue == gameInfo.items.Salts) {
       return "Bath Salts";
+    }
+    if (propertyValue == gameInfo.items.Ornament) {
+      return "Ornament";
     }
     return null;
   }
