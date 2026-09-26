@@ -1,8 +1,8 @@
 <html>
   <head>
     <base href="../" />
-    <title>Cards: Gift</title>
-    <link rel="stylesheet" href="css/cards-gift.css" />
+    <title>Cards: Takes From</title>
+    <link rel="stylesheet" href="css/cards-takes-from.css" />
     <link rel="stylesheet" href="css/images.css" />
     <link rel="stylesheet" href="SharedWebBoardgame/css/cards.css" />
     <link rel="stylesheet" href="SharedWebBoardgame/css/main.css" />
@@ -81,31 +81,32 @@
         "sharedJavascript/genericMeasurements",
         "sharedJavascript/htmlUtils",
         "sharedJavascript/systemConfigs",
-        "javascript/cardsGiftData",
-        "javascript/cardsGift",
+        "javascript/cardsTakesFromData",
+        "javascript/cardsTakesFrom",
       ], function (
         cards,
         debugLogModule,
         genericMeasurements,
         htmlUtils,
         systemConfigs,
-        cardsGiftData,
-        cardsGift,
+        cardsTakesFromData,
+        cardsTakesFrom,
       ) {
         var debugLog = debugLogModule.debugLog;
 
         var sc = systemConfigs.getCardSystemConfigs({
-          itemsPerRow: 10,
+          cardWidthPx: genericMeasurements.standardCardWidthPx,
+          cardHeightPx: genericMeasurements.standardCardWidthPx,
         });
         systemConfigs.setSystemConfigs(sc);
 
-        var numCards = cardsGiftData.getNumCards();
+        var numCards = cardsTakesFromData.getNumCards();
 
-        var cardConfigs = cardsGiftData.getCardConfigs();
-        var backConfigCallback = cardsGift.addCardBack;
-        var backConfigs = cardsGiftData.getCardBackConfigs(backConfigCallback);
+        var cardConfigs = cardsTakesFromData.getCardConfigs();
+        var backConfigCallback = cardsTakesFrom.addCardBack;
+        var backConfigs = {};
 
-        cards.addCards(numCards, cardsGift.addCardFront, backConfigs);
+        cards.addCards(numCards, cardsTakesFrom.addCardFront, backConfigs);
       });
     </script>
   </body>

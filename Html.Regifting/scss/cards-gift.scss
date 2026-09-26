@@ -12,6 +12,7 @@
     0 4px 10px rgba(0, 0, 0, 0.3);
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -28,41 +29,12 @@
       1px 1px 0 #8d7025,
       2px 3px 4px rgba(0, 0, 0, 0.35);
   }
-}
 
-.card.gift.front.color-red {
-  box-shadow:
-    inset 0 0 0 5px #742b2b,
-    inset 0 0 0 7px #c9a84a,
-    0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.card.gift.front.color-green {
-  box-shadow:
-    inset 0 0 0 5px #307755,
-    inset 0 0 0 7px #c9a84a,
-    0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.card.gift.front.color-blue {
-  box-shadow:
-    inset 0 0 0 5px #28205f,
-    inset 0 0 0 7px #c9a84a,
-    0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.card.gift.front.color-white {
-  box-shadow:
-    inset 0 0 0 5px #cfcecf,
-    inset 0 0 0 7px #c9a84a,
-    0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.card.gift.front.fruitcake {
-  box-shadow:
-    inset 0 0 0 5px #a98637,
-    inset 0 0 0 7px #c9a84a,
-    0 4px 10px rgba(0, 0, 0, 0.3);
+  .pseudo-image {
+    width: 60%;
+    height: 60%;
+    z-index: 10;
+  }
 }
 
 .card.gift.front {
@@ -73,32 +45,64 @@
   box-sizing: border-box;
 
   color: #000;
-  background-image: url("../images/cards/snow.png");
   position: relative;
 
-  .serial-number {
+  .pseudo-image {
     position: absolute;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 32px;
-    font-weight: bold;
-    color: #000;
-    bottom: 10px;
-    right: 10px;
+    z-index: 10;
+    top: 18px;
+    aspect-ratio: 1 / 1;
+    width: 50%;
+    height: auto;
+    filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
   }
 
-  .sentiment-wrapper {
-    top: 50%;
+  .scoring {
+    position: absolute;
+    font-family: 'Cinzel', serif;
+    font-size: 30px;
+    display: flex;
+    z-index: 20;
+
+    span.value {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    span.value::before {
+      content: "\00a0";
+      /* non-breaking space */
+    }
+  }
+
+  .scoring.haul {
+    top: 40%;
+    color: #281212;
+  }
+
+  .scoring.shame {
+    top: 55%;
+    color: #153717;
+  }
+
+  .text-wrapper {
+    transform: translate(-50%, -50%);
+    top: 80%;
+    left: 50%;
+
     z-index: 20;
     position: absolute;
-    padding-top: 3px;
-    padding-right: 3px;
-    padding-bottom: 3px;
-    padding-left: 3px;
+
+    width: 80%;
+    padding: 3px;
+    box-sizing: border-box;
+
     background: #5a4634;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     filter: drop-shadow(0 6px 5px rgba(0, 0, 0, 0.5));
+
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
 
     clip-path: polygon(20px 0,
         calc(100% - 20px) 0,
@@ -109,12 +113,25 @@
         0 calc(100% - 20px),
         0 20px);
 
-    .property-sentiment {
-      padding: 18px 30px;
+    .text {
+      width: 100%;
+      min-height: 58px;
+      box-sizing: border-box;
+
+      padding: 10px 30px;
+
       display: flex;
       align-items: center;
+      justify-content: center;
 
-      /* smaller version of the same shape */
+      font-size: 22px;
+      text-align: center;
+      color: #fff4ed;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+      font-family: "Alfa Slab One", serif;
+
+
       clip-path: polygon(17px 0,
           calc(100% - 17px) 0,
           100% 17px,
@@ -124,92 +141,6 @@
           0 calc(100% - 17px),
           0 17px);
 
-      font-size: 32px;
-      text-align: center;
-      color: #3b3026;
-      font-weight: bold;
-      letter-spacing: 0.02em;
-    }
-
-    .property-sentiment.sentiment-home {
-      font-family: "Rye", serif;
-      background:
-        linear-gradient(90deg,
-          rgba(55, 30, 12, .16) 0%,
-          transparent 12%,
-          rgba(255, 215, 160, .10) 27%,
-          transparent 43%,
-          rgba(65, 35, 15, .13) 57%,
-          transparent 72%,
-          rgba(255, 220, 160, .08) 88%),
-        repeating-linear-gradient(1deg,
-          #a77b4d 0px,
-          #a77b4d 4px,
-          #91683f 6px,
-          #b88c59 9px,
-          #9d7247 14px);
-    }
-
-    .property-sentiment.sentiment-peace {
-      font-family: "Alfa Slab One", serif;
-      background:
-        linear-gradient(90deg,
-          rgba(90, 80, 65, .10) 0%,
-          transparent 12%,
-          rgba(255, 255, 255, .18) 25%,
-          transparent 40%,
-          rgba(80, 70, 55, .08) 55%,
-          transparent 72%,
-          rgba(255, 255, 255, .14) 88%),
-        repeating-linear-gradient(2deg,
-          #ddd8c8 0px,
-          #ddd8c8 5px,
-          #c9c3b2 7px,
-          #e7e2d5 10px,
-          #d1cbbb 15px);
-    }
-
-    .property-sentiment.sentiment-joy {
-      font-family: "Bowlby One SC", serif;
-      background:
-        linear-gradient(105deg,
-          rgba(255, 170, 45, .18) 0%,
-          transparent 14%,
-          rgba(255, 245, 180, .20) 28%,
-          transparent 42%,
-          rgba(235, 135, 25, .13) 58%,
-          transparent 74%,
-          rgba(255, 230, 120, .16) 89%),
-        repeating-linear-gradient(3deg,
-          #e7b84f 0px,
-          #e7b84f 4px,
-          #d79f38 6px,
-          #f0c968 10px,
-          #dda942 15px);
-    }
-
-    .property-sentiment.sentiment-love {
-      font-family: Georgia, serif;
-      background:
-        linear-gradient(90deg,
-          rgba(90, 55, 25, .12) 0%,
-          transparent 8%,
-          rgba(255, 230, 180, .12) 22%,
-          transparent 35%,
-          rgba(80, 45, 20, .10) 48%,
-          transparent 65%,
-          rgba(255, 225, 170, .10) 80%,
-          transparent 92%),
-        repeating-linear-gradient(2deg,
-          #c8a878 0px,
-          #c8a878 5px,
-          #b99767 6px,
-          #d0b180 9px,
-          #c09e6e 13px);
-    }
-
-    .property-sentiment.sentiment-wine {
-      font-family: "Courier New", monospace;
       background:
         linear-gradient(90deg,
           rgba(55, 55, 45, .14) 0%,
@@ -225,80 +156,7 @@
           #878170 7px,
           #aaa38e 10px,
           #918a77 15px);
+
     }
-
-  }
-
-
-  .property-item.pseudo-image {
-    position: absolute;
-    z-index: 10;
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
-
-  }
-
-  .property-item.pseudo-image.item-mug {
-    top: 30px;
-  }
-
-  .brand-wrapper {
-    width: 80%;
-    height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 10px;
-
-    .property-brand {
-      font-size: 36px;
-    }
-
-    .property-brand.brand-plum-and-thistle {
-      font-size: 26px;
-    }
-  }
-
-
-  .brand-wrapper.brand-plum-and-thistle {
-    background: #d8b8c5;
-    border: 4px solid #6d4059;
-    border-radius: 14px;
-    color: #49313e;
-    font-family: "Amatic SC", cursive;
-  }
-
-  .brand-wrapper.brand-evelyn {
-    background: #eee2c8;
-    border: 4px solid #92734e;
-    border-radius: 14px;
-    color: #5a4938;
-    font-family: "Cormorant Garamond", serif;
-  }
-
-  .brand-wrapper.brand-soren {
-    background: #cbd5d3;
-    border: 4px solid #536663;
-    border-radius: 14px;
-    color: #334340;
-    font-family: "Special Elite", monospace;
-  }
-
-  .brand-wrapper.brand-hearthside {
-    background: #c98f78;
-    border: 4px solid #713f35;
-    border-radius: 14px;
-    color: #4b2925;
-    font-family: "Josefin Slab", serif;
-  }
-
-  .title {
-    position: absolute;
-    font-size: 22px;
-    top: 25px;
-    font-family: "Bebas Neue", sans-serif;
   }
 }

@@ -13,6 +13,63 @@ define([
   //-----------------------------------
   var gCardConfigs = null;
 
+  var gCardTemplates = [
+    {
+      haul: 3,
+      imageClasses: ["item-candle-color-red"],
+      text: "Cranberry Candle",
+      shame: 5,
+    },
+    {
+      haul: 3,
+      imageClasses: ["item-salts-color-green"],
+      text: "Kiwi Bath Salts",
+      shame: 5,
+    },
+    {
+      haul: 4,
+      imageClasses: ["item-ornament-color-white"],
+      text: "Festive Ornament",
+      shame: 6,
+    },
+    {
+      haul: 4,
+      imageClasses: ["item-teddy-color-blue"],
+      text: "BlueBeary Bear",
+      shame: 6,
+    },
+    {
+      haul: 4,
+      imageClasses: ["item-mug-color-green"],
+      text: "Sylvan Mug",
+      shame: 6,
+    },
+    {
+      haul: 5,
+      imageClasses: ["fruitcake"],
+      text: "Fruitcake",
+      shame: 7,
+    },
+    {
+      haul: 5,
+      imageClasses: ["soap"],
+      text: "Decorative Soaps",
+      shame: 7,
+    },
+    {
+      haul: 5,
+      imageClasses: ["slanket"],
+      text: "Slanket",
+      shame: 7,
+    },
+    {
+      haul: 5,
+      imageClasses: ["singing-fish"],
+      text: "Singing Fish",
+      shame: 7,
+    },
+  ];
+
   function expandWithAllProperties(
     currentCardConfigs,
     giftPropertyType,
@@ -34,33 +91,22 @@ define([
     if (gCardConfigs !== null) {
       return gCardConfigs;
     }
-    gCardConfigs = [
-      {
-        count: 1,
-      },
-    ];
+    gCardConfigs = [];
+    for (var i = 0; i < gameInfo.numPlayers; i++) {
+      for (var j = 0; j < gCardTemplates.length; j++) {
+        var cardTemplate = gCardTemplates[j];
+        var cardConfig = structuredClone(cardTemplate);
+        cardConfig.playerIndex = i;
 
-    // Just one of each possibility.
-    for (const [giftPropertyTypeName, giftPropertyArray] of Object.entries(
-      gameInfo.giftPropertyArraysByType,
-    )) {
-      gCardConfigs = expandWithAllProperties(
-        gCardConfigs,
-        giftPropertyTypeName,
-        giftPropertyArray,
-      );
+        debugLog(
+          "generateCardConfigs",
+          "cardConfig = ",
+          JSON.stringify(cardConfig),
+        );
+
+        gCardConfigs.push(cardConfig);
+      }
     }
-
-    // And 8 fruitcakes.
-    gCardConfigs.push({
-      count: gameInfo.numPlayers,
-      special: {
-        cardClasses: ["fruitcake"],
-        imageClasses: ["fruitcake"],
-        textClasses: ["fruitcake", "title"],
-        text: "Fruitcake",
-      },
-    });
 
     return gCardConfigs;
   }
@@ -85,9 +131,20 @@ define([
     return cards.getNumCardsFromConfigs(gCardConfigs);
   }
 
+  function getCardBackConfigs(callback) {
+    debugLog("getCardBackConfigs", "callback = ", JSON.stringify(callback));
+    var cardBackConfigs = [];
+    var backConfig = {
+      callback: callback,
+    };
+    cardBackConfigs.push(backConfig);
+    return cardBackConfigs;
+  }
+
   // This returned object becomes the defined value of this module
   return {
     getNumCards: getNumCards,
     getCardConfigs: getCardConfigs,
+    getCardBackConfigs: getCardBackConfigs,
   };
 });

@@ -5,58 +5,46 @@
   display: flex;
   align-items: start;
 }
-.dice.tokens .tokens.player .face {
+.dice.tokens .die.tokens .face {
+  border-width: 7px;
+  border-style: solid;
   box-sizing: border-box;
-  border: 2px solid #000;
+}
+.dice.tokens .die.tokens.player .face.token {
+  border: solid 4px black;
   border-radius: 50%;
 }
-.dice.tokens .tokens.player .face .text {
-  font: "Bebas Neue", sans-serif;
-  font-size: 56px;
-}
-.dice.tokens .tokens.player .face.player-0 {
+.dice.tokens .die.tokens.player .face.token.player-0 {
   background-color: #e6194b;
   border-color: #58060d;
 }
-.dice.tokens .tokens.player .face.player-1 {
+.dice.tokens .die.tokens.player .face.token.player-1 {
   background-color: #3cb44b;
   border-color: #0e420e;
 }
-.dice.tokens .tokens.player .face.player-2 {
+.dice.tokens .die.tokens.player .face.token.player-2 {
   background-color: #ffe119;
   border-color: #3f300d;
 }
-.dice.tokens .tokens.player .face.player-3 {
+.dice.tokens .die.tokens.player .face.token.player-3 {
   background-color: #4363d8;
   border-color: #081020;
 }
-.dice.tokens .tokens.player .face.player-4 {
+.dice.tokens .die.tokens.player .face.token.player-4 {
   background-color: #f58231;
   border-color: #301d07;
 }
-.dice.tokens .tokens.player .face.player-5 {
+.dice.tokens .die.tokens.player .face.token.player-5 {
   background-color: #911eb4;
   border-color: #2f063f;
 }
-.dice.tokens .tokens.player .face.player-6 {
+.dice.tokens .die.tokens.player .face.token.player-6 {
   background-color: #46f0f0;
   border-color: #0b4242;
 }
-.dice.tokens .tokens.player .face.player-7 {
+.dice.tokens .die.tokens.player .face.token.player-7 {
   background-color: #aaaaaa;
   border-color: #666666;
-}
-.dice.tokens .die.tokens.package .face {
-  border: 2px solid #b8c5c9;
-  border-radius: 8px;
-  box-sizing: border-box;
-  border-radius: 7px;
-  background: radial-gradient(circle at 50% 100%, rgba(255, 235, 190, 0.8) 0%, rgba(255, 235, 190, 0.25) 25%, transparent 55%), linear-gradient(to bottom, #dfeaf2 0%, #edf3f5 45%, #f7f1e5 100%);
-}
-.dice.tokens .die.tokens.package .face.property-decoration .image.pseudo-image,
-.dice.tokens .die.tokens.package .face.property-container .image.pseudo-image {
-  width: 90%;
-  height: 90%;
 }
 
 /*# sourceMappingURL=tokens.css.map */
