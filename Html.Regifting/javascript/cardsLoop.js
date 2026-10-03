@@ -2,21 +2,21 @@ define([
   "sharedJavascript/cards",
   "sharedJavascript/debugLog",
   "sharedJavascript/htmlUtils",
-  "javascript/cardsTakesFromData",
+  "javascript/cardsLoopData",
   "javascript/utils",
   "dojo/domReady!",
-], function (cards, debugLogModule, htmlUtils, cardsTakesFromData, utils) {
+], function (cards, debugLogModule, htmlUtils, cardsLoopData, utils) {
   var debugLog = debugLogModule.debugLog;
 
   function addCardFront(parent, index) {
-    var cardConfigs = cardsTakesFromData.getCardConfigs();
+    var cardConfigs = cardsLoopData.getCardConfigs();
     var cardConfig = cards.getCardConfigAtIndex(cardConfigs, index);
 
     debugLog("addCardFront", "cardConfig = ", JSON.stringify(cardConfig));
 
     var playerIndex = cardConfig.playerIndex;
 
-    var cardFrontClasses = ["takes-from", "player-" + cardConfig.playerIndex];
+    var cardFrontClasses = ["loop", "player-" + cardConfig.playerIndex];
     var cardFrontNode = cards.addCardFront(
       parent,
       cardFrontClasses,
@@ -25,10 +25,17 @@ define([
 
     utils.customizeNodeForPlayerIndex(cardFrontNode, playerIndex);
 
+    var textNode = htmlUtils.addDiv(
+      cardFrontNode,
+      ["text"],
+      "text--div",
+      cardConfig.text,
+    );
+
     var imageNode = htmlUtils.addImage(
       cardFrontNode,
-      ["takes-from"],
-      "takes-from-image",
+      ["player-arrow"],
+      "player-arrow--image",
     );
 
     return cardFrontNode;

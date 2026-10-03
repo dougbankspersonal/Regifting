@@ -1,8 +1,8 @@
 <html>
   <head>
     <base href="../" />
-    <title>Cards: Takes From</title>
-    <link rel="stylesheet" href="css/cards-takes-from.css" />
+    <title>Cards: Loop</title>
+    <link rel="stylesheet" href="css/cards-loop.css" />
     <link rel="stylesheet" href="css/images.css" />
     <link rel="stylesheet" href="SharedWebBoardgame/css/cards.css" />
     <link rel="stylesheet" href="SharedWebBoardgame/css/main.css" />
@@ -81,16 +81,16 @@
         "sharedJavascript/genericMeasurements",
         "sharedJavascript/htmlUtils",
         "sharedJavascript/systemConfigs",
-        "javascript/cardsTakesFromData",
-        "javascript/cardsTakesFrom",
+        "javascript/CardsLoopData",
+        "javascript/cardsLoop",
       ], function (
         cards,
         debugLogModule,
         genericMeasurements,
         htmlUtils,
         systemConfigs,
-        cardsTakesFromData,
-        cardsTakesFrom,
+        cardsLoopData,
+        cardsLoop,
       ) {
         var debugLog = debugLogModule.debugLog;
 
@@ -100,13 +100,13 @@
         });
         systemConfigs.setSystemConfigs(sc);
 
-        var numCards = cardsTakesFromData.getNumCards();
+        var numCards = cardsLoopData.getNumCards();
 
-        var cardConfigs = cardsTakesFromData.getCardConfigs();
-        var backConfigCallback = cardsTakesFrom.addCardBack;
+        var cardConfigs = cardsLoopData.getCardConfigs();
+        var backConfigCallback = cardsLoop.addCardBack;
         var backConfigs = {};
 
-        cards.addCards(numCards, cardsTakesFrom.addCardFront, backConfigs);
+        cards.addCards(numCards, cardsLoop.addCardFront, backConfigs);
       });
     </script>
   </body>

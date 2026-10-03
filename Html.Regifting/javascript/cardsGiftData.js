@@ -5,6 +5,11 @@ define([
   "dojo/domReady!",
 ], function (cards, debugLogModule, gameInfo) {
   var debugLog = debugLogModule.debugLog;
+  //-----------------------------------
+  //
+  // Constants.
+  //
+  //-----------------------------------
 
   //-----------------------------------
   //
@@ -12,79 +17,25 @@ define([
   //
   //-----------------------------------
   var gCardConfigs = null;
+  var gCardSpecialConfigs = null;
 
-  var gCardTemplates = [
-    {
-      haul: 3,
-      imageClasses: ["item-candle-color-red"],
-      text: "Cranberry Candle",
-      shame: 5,
-    },
-    {
-      haul: 3,
-      imageClasses: ["item-salts-color-green"],
-      text: "Kiwi Bath Salts",
-      shame: 5,
-    },
-    {
-      haul: 4,
-      imageClasses: ["item-ornament-color-white"],
-      text: "Festive Ornament",
-      shame: 6,
-    },
-    {
-      haul: 4,
-      imageClasses: ["item-teddy-color-blue"],
-      text: "BlueBeary Bear",
-      shame: 6,
-    },
-    {
-      haul: 4,
-      imageClasses: ["item-mug-color-green"],
-      text: "Sylvan Mug",
-      shame: 6,
-    },
-    {
-      haul: 5,
-      imageClasses: ["fruitcake"],
-      text: "Fruitcake",
-      shame: 7,
-    },
-    {
-      haul: 5,
-      imageClasses: ["soap"],
-      text: "Decorative Soaps",
-      shame: 7,
-    },
-    {
-      haul: 5,
-      imageClasses: ["slanket"],
-      text: "Slanket",
-      shame: 7,
-    },
-    {
-      haul: 5,
-      imageClasses: ["singing-fish"],
-      text: "Singing Fish",
-      shame: 7,
-    },
-  ];
-
-  function expandWithAllProperties(
-    currentCardConfigs,
-    giftPropertyType,
-    giftPropertyArray,
-  ) {
-    var newCardConfigs = [];
-    for (var i = 0; i < currentCardConfigs.length; i++) {
-      var newCardConfig = structuredClone(currentCardConfigs[i]);
-
-      for (var j = 0; j < giftPropertyArray.length; j++) {
-        newCardConfig[giftPropertyType] = giftPropertyArray[j];
-        newCardConfigs.push(structuredClone(newCardConfig));
+  function buildVanillaTemplates() {
+    var vanillaTemplates = [];
+    for (var i = 0; i < gameInfo.vanillaGiftTitleArrays.length; i++) {
+      var giftTitleArray = gameInfo.vanillaGiftTitleArrays[i];
+      for (var j = 0; j < giftTitleArray.length; j++) {
+        var giftTitle = giftTitleArray[j];
+        var template = {
+          title: giftTitle,
+          imageClasses: ["gift-" + i + "-" + j],
+          keep: i + 1,
+          shame: i + 1,
+          count: gameInfo.copiesPerVanillaCard,
+        };
+        vanillaTemplates.push(template);
       }
     }
-    return newCardConfigs;
+    return vanillaTemplates;
   }
 
   function generateCardConfigs() {
@@ -92,9 +43,12 @@ define([
       return gCardConfigs;
     }
     gCardConfigs = [];
+
+    var vanillaTemplates = buildVanillaTemplates();
+
     for (var i = 0; i < gameInfo.numPlayers; i++) {
-      for (var j = 0; j < gCardTemplates.length; j++) {
-        var cardTemplate = gCardTemplates[j];
+      for (var j = 0; j < vanillaTemplates.length; j++) {
+        var cardTemplate = vanillaTemplates[j];
         var cardConfig = structuredClone(cardTemplate);
         cardConfig.playerIndex = i;
 
@@ -109,6 +63,63 @@ define([
     }
 
     return gCardConfigs;
+  }
+
+  function generateCardSpecialConfigs() {
+    if (gCardSpecialConfigs !== null) {
+      return gCardSpecialConfigs;
+    }
+    const cardSpecialTemplates = [
+      {
+        title: "Fruitcake",
+        imageClasses: ["fruitcake"],
+        keep: "N/A",
+        keepClasses: ["special"],
+        shame: 2,
+        specialText: "*Cannot be Kept",
+      },
+      {
+        title: "Awkward Photo",
+        imageClasses: ["awkward-photo"],
+        keep: "2",
+        shame: "N/A",
+        shameClasses: ["special"],
+        specialText: "*Must be Kept",
+      },
+      {
+        title: "Cranberry Candle",
+        imageClasses: ["item-candle-color-red"],
+        keep: "?",
+        shame: 2,
+        specialText: "Keep: 1 + # Candles already kept",
+      },
+      {
+        title: "Single Handmade Sock",
+        imageClasses: ["sock"],
+        keep: "?",
+        shame: 2,
+        specialText: "Keep: 2 to start a new pair, 0 to finish a pair",
+      },
+    ];
+
+    gCardSpecialConfigs = [];
+    for (var i = 0; i < gameInfo.numPlayers; i++) {
+      for (var j = 0; j < cardSpecialTemplates.length; j++) {
+        var cardSpecialTemplate = cardSpecialTemplates[j];
+        var cardSpecialConfig = structuredClone(cardSpecialTemplate);
+        cardSpecialConfig.playerIndex = i;
+
+        debugLog(
+          "generateCardSpecialConfigs",
+          "cardSpecialConfig = ",
+          JSON.stringify(cardSpecialConfig),
+        );
+
+        gCardSpecialConfigs.push(cardSpecialConfig);
+      }
+    }
+
+    return gCardSpecialConfigs;
   }
 
   function getCardConfigs() {
@@ -131,6 +142,29 @@ define([
     return cards.getNumCardsFromConfigs(gCardConfigs);
   }
 
+  function getCardSpecialConfigs() {
+    generateCardSpecialConfigs();
+
+    console.assert(
+      gCardSpecialConfigs,
+      "getCardSpecialConfigs called before generateCardSpecialConfigs",
+    );
+    debugLog(
+      "getCardSpecialConfigs: gCardSpecialConfigs.length = ",
+      gCardSpecialConfigs.length,
+    );
+    return gCardSpecialConfigs;
+  }
+
+  function getNumCardsSpecial() {
+    generateCardSpecialConfigs();
+    console.assert(
+      gCardSpecialConfigs,
+      "getNumCardsSpecial called before generateCardSpecialConfigs",
+    );
+    return cards.getNumCardsFromConfigs(gCardSpecialConfigs);
+  }
+
   function getCardBackConfigs(callback) {
     debugLog("getCardBackConfigs", "callback = ", JSON.stringify(callback));
     var cardBackConfigs = [];
@@ -146,5 +180,8 @@ define([
     getNumCards: getNumCards,
     getCardConfigs: getCardConfigs,
     getCardBackConfigs: getCardBackConfigs,
+
+    getNumCardsSpecial: getNumCardsSpecial,
+    getCardSpecialConfigs: getCardSpecialConfigs,
   };
 });

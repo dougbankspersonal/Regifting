@@ -8,36 +8,50 @@ define([
 ], function (cards, debugLogModule, htmlUtils, cardsGiftData, utils) {
   var debugLog = debugLogModule.debugLog;
 
-  function addCardFront(parent, index) {
-    var cardConfigs = cardsGiftData.getCardConfigs();
-    var cardConfig = cards.getCardConfigAtIndex(cardConfigs, index);
+  function addCardFrontShared(parent, cardConfig, opt_extraClasses) {
+    var cardFrontClasses = opt_extraClasses ? opt_extraClasses : [];
+    cardFrontClasses = cardFrontClasses.concat([
+      "gift",
+      "player-" + cardConfig.playerIndex,
+    ]);
 
-    debugLog("addCardFront", "cardConfig = ", JSON.stringify(cardConfig));
-
-    var playerIndex = cardConfig.playerIndex;
-
-    var cardFrontClasses = ["gift", "player-" + cardConfig.playerIndex];
     var cardFrontNode = cards.addCardFront(
       parent,
       cardFrontClasses,
       "gift-front",
     );
 
-    // customize colors.
-    utils.customizeNodeForPlayerIndex(cardFrontNode, playerIndex);
+    var scoringNode = htmlUtils.addDiv(cardFrontNode, ["scoring"], "scoring");
+
+    var keepClasses = cardConfig.keepClasses ? cardConfig.keepClasses : [];
+    keepClasses = keepClasses.concat(["scoring-type", "keep"]);
 
     htmlUtils.addDiv(
-      cardFrontNode,
-      ["scoring", "haul"],
-      "scoring-haul",
-      "Haul: <span class=value>" + cardConfig.haul + "</span>",
+      scoringNode,
+      keepClasses,
+      "scoring-keep",
+      "Keep: <span class=value>" + cardConfig.keep + "</span>",
     );
+
+    var shameClasses = cardConfig.shameClasses ? cardConfig.shameClasses : [];
+    shameClasses = shameClasses.concat(["scoring-type", "shame"]);
+
     htmlUtils.addDiv(
-      cardFrontNode,
-      ["scoring", "shame"],
+      scoringNode,
+      shameClasses,
       "scoring-shame",
       "Shame: <span class=value>" + cardConfig.shame + "</span>",
     );
+
+    // Is there special text?
+    if (cardConfig.specialText) {
+      htmlUtils.addDiv(
+        cardFrontNode,
+        ["special-text"],
+        "special-text",
+        cardConfig.specialText,
+      );
+    }
 
     // Image.
     var imageClasses = structuredClone(cardConfig.imageClasses);
@@ -47,19 +61,43 @@ define([
       "gift-image",
     );
 
-    var textWrapperNode = htmlUtils.addDiv(
+    var titleWrapperNode = htmlUtils.addDiv(
       cardFrontNode,
-      ["text-wrapper"],
-      "gift-text-wrapper",
+      ["title-wrapper"],
+      "gift-title-wrapper",
     );
-    var textNode = htmlUtils.addDiv(
-      textWrapperNode,
-      ["text"],
-      "gift-text",
-      cardConfig.text,
+    var title = htmlUtils.addDiv(
+      titleWrapperNode,
+      ["title"],
+      "gift-title",
+      cardConfig.title,
     );
 
     return cardFrontNode;
+  }
+
+  function addCardFront(parent, index) {
+    var cardConfigs = cardsGiftData.getCardConfigs();
+    var cardConfig = cards.getCardConfigAtIndex(cardConfigs, index);
+
+    debugLog("addCardFront", "cardConfig = ", JSON.stringify(cardConfig));
+
+    var playerIndex = cardConfig.playerIndex;
+
+    return addCardFrontShared(parent, cardConfig);
+  }
+
+  function addCardSpecialFront(parent, index) {
+    var cardConfigs = cardsGiftData.getCardSpecialConfigs();
+    var cardConfig = cards.getCardConfigAtIndex(cardConfigs, index);
+
+    debugLog(
+      "addCardSpecialFront",
+      "cardConfig = ",
+      JSON.stringify(cardConfig),
+    );
+
+    return addCardFrontShared(parent, cardConfig, ["special"]);
   }
 
   function addCardBack(parent, index) {
@@ -85,6 +123,7 @@ define([
 
   return {
     addCardFront: addCardFront,
+    addCardSpecialFront: addCardSpecialFront,
     addCardBack: addCardBack,
   };
 });

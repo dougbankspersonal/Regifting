@@ -13,22 +13,27 @@ define([
   //-----------------------------------
   var gCardConfigs = null;
 
+  function makeLoopConfig(playerIndex, text) {
+    var cardConfig = {};
+    cardConfig.playerIndex = playerIndex;
+    cardConfig.imageClass = ["player-arrow"];
+    cardConfig.text = text;
+    debugLog(
+      "generateCardConfigs",
+      "giveConfig = ",
+      JSON.stringify(cardConfig),
+    );
+    return cardConfig;
+  }
+
   function generateCardConfigs() {
     if (gCardConfigs !== null) {
       return gCardConfigs;
     }
     gCardConfigs = [];
     for (var i = 0; i < gameInfo.numPlayers; i++) {
-      var cardConfig = {};
-      cardConfig.playerIndex = i;
-
-      debugLog(
-        "generateCardConfigs",
-        "cardConfig = ",
-        JSON.stringify(cardConfig),
-      );
-
-      gCardConfigs.push(cardConfig);
+      gCardConfigs.push(makeLoopConfig(i, "Take"));
+      gCardConfigs.push(makeLoopConfig(i, "Give"));
     }
 
     return gCardConfigs;
