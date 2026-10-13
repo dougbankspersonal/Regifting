@@ -11,54 +11,48 @@ define([
   //-----------------------------------
   const gNumPlayers = 6;
 
-  const gLowEndVanillaGiftTitles = [
-    "Mug",
-    "Ornament",
-    "Can of Beans",
-    "Lottery Scratchers",
-    "Car Air Freshener",
+  const gTier0GiftConfigs = [
+    {
+      imageClasses: ["beans"],
+      title: "Can of Beans",
+    },
+    {
+      imageClasses: ["scratchers"],
+      title: "Lottery Scratchers",
+    },
   ];
 
-  const gMidRangeVanillaGiftTitles = [
-    "Decorative Shell",
-    "Pine-Scented Bear",
-    "Ocean Breeze Bath Salts",
-    "Danish Cookie Tin",
-    "Necktie",
+  const gTier1GiftConfigs = [
+    {
+      imageClasses: ["salts"],
+      title: "Bath Salts",
+    },
+    {
+      imageClasses: ["mug"],
+      title: "Mug",
+    },
   ];
 
-  const gHighEndVanillaGiftTitles = [
-    "Singing Fish",
-    "Scented Soaps",
-    "Holiday Sweater",
-    "Wine",
-    "Slanket",
+  const gTier2GiftConfigs = [
+    {
+      imageClasses: ["slanket"],
+      title: "Slanket",
+    },
+    {
+      imageClasses: ["singing-fish"],
+      title: "Singing Fish",
+    },
   ];
 
-  const gVanillaGiftTitleArrays = [
-    gLowEndVanillaGiftTitles,
-    gMidRangeVanillaGiftTitles,
-    gHighEndVanillaGiftTitles,
+  const gGiftConfigsByTier = [
+    gTier0GiftConfigs,
+    gTier1GiftConfigs,
+    gTier2GiftConfigs,
   ];
-
-  const gNumVanillaClasses = gVanillaGiftTitleArrays.length;
-  const gTypesPerVanillaClass = gLowEndVanillaGiftTitles.length;
-  console.assert(
-    gTypesPerVanillaClass == gMidRangeVanillaGiftTitles.length,
-    "Should be same length",
-  );
-  console.assert(
-    gTypesPerVanillaClass == gHighEndVanillaGiftTitles.length,
-    "Should be same length",
-  );
-  const gCopiesPerVanillaCard = 1;
 
   // This returned object becomes the defined value of this module
   return {
     numPlayers: gNumPlayers,
-    numVanillaClasses: gNumVanillaClasses,
-    typesPerVanillaClass: gTypesPerVanillaClass,
-    copiesPerVanillaCard: gCopiesPerVanillaCard,
-    vanillaGiftTitleArrays: gVanillaGiftTitleArrays,
+    giftConfigsByTier: gGiftConfigsByTier,
   };
 });

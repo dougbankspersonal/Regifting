@@ -13,10 +13,14 @@
   justify-content: center;
 }
 .card.gift.back .pseudo-image {
+  top: 80px;
+  position: absolute;
   width: 70%;
   height: 70%;
 }
 .card.gift.back .text {
+  top: 40px;
+  position: absolute;
   font-family: "Cinzel", serif;
   font-size: 52px;
   font-weight: 700;
@@ -30,20 +34,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   box-sizing: border-box;
   color: #000;
   position: relative;
 }
 .card.gift.front .scoring {
   z-index: 10;
-  position: absolute;
-  top: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  padding-top: 10px;
   font-family: "Cinzel", serif;
   font-size: 15px;
   font-weight: 700;
@@ -77,23 +80,66 @@
   right: 25px;
   background: #863d48;
 }
-.card.gift.front .special-text {
-  position: absolute;
-  top: 96px;
-  left: 50%;
-  transform: translateX(-50%);
+.card.gift.front .reward-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: -30px;
+  padding-top: 10px;
+}
+.card.gift.front .reward-wrapper .minicard {
+  width: 25px;
+  height: 35px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
+}
+.card.gift.front .reward-wrapper .minicard.index-0 {
+  transform: rotate(-15deg);
+  background: #ffffff;
+  z-index: 5;
+}
+.card.gift.front .reward-wrapper .minicard.index-1 {
+  transform: translateY(-5px);
+  background: #aaaaaa;
+  z-index: 10;
+}
+.card.gift.front .reward-wrapper .minicard.index-2 {
+  transform: rotate(15deg);
+  background: #777777;
+  z-index: 15;
+}
+.card.gift.front .reward-wrapper .reward-text {
+  padding-left: 10px;
+  font-size: 30px;
+}
+.card.gift.front .text {
   width: calc(100% - 22px);
   color: #2f2922;
   z-index: 10;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.15;
   text-align: center;
   padding: 5px 9px;
   box-sizing: border-box;
 }
-.card.gift.front .special-text,
+.card.gift.front .text .keep {
+  font-size: 22px;
+  font-weight: bold;
+}
+.card.gift.front .pseudo-image {
+  width: 45%;
+  z-index: 5;
+  aspect-ratio: 1/1;
+  height: auto;
+  filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
+}
+.card.gift.front .no-text.pseudo-image {
+  width: 70%;
+}
 .card.gift.front .title-wrapper {
   box-sizing: border-box;
   /* light pewter / painted metal */
@@ -103,17 +149,6 @@
   color: #292b2e;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 -1px 0 rgba(70, 75, 80, 0.18), 0 3px 5px rgba(0, 0, 0, 0.22);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
-}
-.card.gift.front .pseudo-image {
-  position: absolute;
-  top: 90px;
-  z-index: 5;
-  aspect-ratio: 1/1;
-  width: 65%;
-  height: auto;
-  filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
-}
-.card.gift.front .title-wrapper {
   position: absolute;
   left: 50%;
   bottom: 16px;
@@ -132,7 +167,7 @@
   margin: 0;
   padding: 0;
   font-family: "Lora", serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: 0.2px;
@@ -205,8 +240,8 @@
 .card.gift.front.player-4 {
   --player-color: #ff922b;
   --player-border: #a84a00;
-  --player-bg-top: #f8c89a;
-  --player-bg-bottom: #fbe4ce;
+  --player-bg-top: #ff922b;
+  --player-bg-bottom: #f8c89a;
 }
 .card.gift.front.player-5 {
   --player-color: #a855c7;
@@ -215,9 +250,12 @@
   --player-bg-bottom: #eee0f4;
 }
 
-.card.gift.front.special .pseudo-image {
-  top: 135px;
-  width: 50%;
+.reward-text {
+  font-weight: bold;
+  text-shadow: -1px -1px 0 white, 0px -1px 0 white, 1px -1px 0 white, -1px 0px 0 white, 1px 0px 0 white, -1px 1px 0 white, 0px 1px 0 white, 1px 1px 0 white;
+}
+.reward-text .outlined-star {
+  font-size: 120%;
 }
 
 /*# sourceMappingURL=cards-gift.css.map */

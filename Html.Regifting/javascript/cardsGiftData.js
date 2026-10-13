@@ -19,23 +19,63 @@ define([
   var gCardConfigs = null;
   var gCardSpecialConfigs = null;
 
-  function buildVanillaTemplates() {
-    var vanillaTemplates = [];
-    for (var i = 0; i < gameInfo.vanillaGiftTitleArrays.length; i++) {
-      var giftTitleArray = gameInfo.vanillaGiftTitleArrays[i];
-      for (var j = 0; j < giftTitleArray.length; j++) {
-        var giftTitle = giftTitleArray[j];
-        var template = {
-          title: giftTitle,
-          imageClasses: ["gift-" + i + "-" + j],
-          keep: i + 1,
-          shame: i + 1,
-          count: gameInfo.copiesPerVanillaCard,
-        };
-        vanillaTemplates.push(template);
+  const gCardSpecialTemplates = [
+    {
+      title: "Fruitcake",
+      imageClasses: ["fruitcake"],
+      keep: 10,
+      shame: 4,
+    },
+    {
+      title: "Personal Photo",
+      imageClasses: ["personal-photo"],
+      keep: 2,
+      shame: 12,
+    },
+    {
+      title: "Candle",
+      imageClasses: ["candle"],
+      keep: "?",
+      shame: 9,
+      text: '<span class="keep">Keep:</span><br>1 + # Candles Kept.',
+    },
+    {
+      title: "Handmade Sock",
+      imageClasses: ["sock"],
+      keep: "?",
+      shame: 7,
+      text: '<span class="keep">Keep:</span><br>Unpaired: 2<br>Paired: 0.',
+    },
+  ];
+
+  function getStatsForTier(tier) {
+    if (tier == 0) {
+      return { keep: 1, shame: 6, reward: 1 };
+    } else if (tier == 1) {
+      return { keep: 2, shame: 8, reward: 4 };
+    } else if (tier == 2) {
+      return { keep: 3, shame: 10, reward: 9 };
+    }
+    console.assert(false, "Invalid tier: " + tier);
+  }
+
+  function getPlayerlessGiftConfigs() {
+    var playerlessGiftConfigs = [];
+    for (var i = 0; i < gameInfo.giftConfigsByTier.length; i++) {
+      var statsForTier = getStatsForTier(i);
+      var giftConfigsByTier = gameInfo.giftConfigsByTier[i];
+      for (var j = 0; j < giftConfigsByTier.length; j++) {
+        var playerlessGiftConfig = structuredClone(giftConfigsByTier[j]);
+        var shame = statsForTier.shame;
+        var keep = statsForTier.keep;
+        var reward = statsForTier.reward;
+        playerlessGiftConfig.keep = keep;
+        playerlessGiftConfig.shame = shame;
+        playerlessGiftConfig.reward = reward;
+        playerlessGiftConfigs.push(playerlessGiftConfig);
       }
     }
-    return vanillaTemplates;
+    return playerlessGiftConfigs;
   }
 
   function generateCardConfigs() {
@@ -44,12 +84,12 @@ define([
     }
     gCardConfigs = [];
 
-    var vanillaTemplates = buildVanillaTemplates();
+    var playerlessGiftConfigs = getPlayerlessGiftConfigs();
 
     for (var i = 0; i < gameInfo.numPlayers; i++) {
-      for (var j = 0; j < vanillaTemplates.length; j++) {
-        var cardTemplate = vanillaTemplates[j];
-        var cardConfig = structuredClone(cardTemplate);
+      for (var j = 0; j < playerlessGiftConfigs.length; j++) {
+        var playerlessGiftConfig = playerlessGiftConfigs[j];
+        var cardConfig = structuredClone(playerlessGiftConfig);
         cardConfig.playerIndex = i;
 
         debugLog(
@@ -62,50 +102,9 @@ define([
       }
     }
 
-    return gCardConfigs;
-  }
-
-  function generateCardSpecialConfigs() {
-    if (gCardSpecialConfigs !== null) {
-      return gCardSpecialConfigs;
-    }
-    const cardSpecialTemplates = [
-      {
-        title: "Fruitcake",
-        imageClasses: ["fruitcake"],
-        keep: "N/A",
-        keepClasses: ["special"],
-        shame: 2,
-        specialText: "*Cannot be Kept",
-      },
-      {
-        title: "Awkward Photo",
-        imageClasses: ["awkward-photo"],
-        keep: "2",
-        shame: "N/A",
-        shameClasses: ["special"],
-        specialText: "*Must be Kept",
-      },
-      {
-        title: "Cranberry Candle",
-        imageClasses: ["item-candle-color-red"],
-        keep: "?",
-        shame: 2,
-        specialText: "Keep: 1 + # Candles already kept",
-      },
-      {
-        title: "Single Handmade Sock",
-        imageClasses: ["sock"],
-        keep: "?",
-        shame: 2,
-        specialText: "Keep: 2 to start a new pair, 0 to finish a pair",
-      },
-    ];
-
-    gCardSpecialConfigs = [];
     for (var i = 0; i < gameInfo.numPlayers; i++) {
-      for (var j = 0; j < cardSpecialTemplates.length; j++) {
-        var cardSpecialTemplate = cardSpecialTemplates[j];
+      for (var j = 0; j < gCardSpecialTemplates.length; j++) {
+        var cardSpecialTemplate = gCardSpecialTemplates[j];
         var cardSpecialConfig = structuredClone(cardSpecialTemplate);
         cardSpecialConfig.playerIndex = i;
 
@@ -115,11 +114,11 @@ define([
           JSON.stringify(cardSpecialConfig),
         );
 
-        gCardSpecialConfigs.push(cardSpecialConfig);
+        gCardConfigs.push(cardSpecialConfig);
       }
     }
 
-    return gCardSpecialConfigs;
+    return gCardConfigs;
   }
 
   function getCardConfigs() {
@@ -142,29 +141,6 @@ define([
     return cards.getNumCardsFromConfigs(gCardConfigs);
   }
 
-  function getCardSpecialConfigs() {
-    generateCardSpecialConfigs();
-
-    console.assert(
-      gCardSpecialConfigs,
-      "getCardSpecialConfigs called before generateCardSpecialConfigs",
-    );
-    debugLog(
-      "getCardSpecialConfigs: gCardSpecialConfigs.length = ",
-      gCardSpecialConfigs.length,
-    );
-    return gCardSpecialConfigs;
-  }
-
-  function getNumCardsSpecial() {
-    generateCardSpecialConfigs();
-    console.assert(
-      gCardSpecialConfigs,
-      "getNumCardsSpecial called before generateCardSpecialConfigs",
-    );
-    return cards.getNumCardsFromConfigs(gCardSpecialConfigs);
-  }
-
   function getCardBackConfigs(callback) {
     debugLog("getCardBackConfigs", "callback = ", JSON.stringify(callback));
     var cardBackConfigs = [];
@@ -180,8 +156,5 @@ define([
     getNumCards: getNumCards,
     getCardConfigs: getCardConfigs,
     getCardBackConfigs: getCardBackConfigs,
-
-    getNumCardsSpecial: getNumCardsSpecial,
-    getCardSpecialConfigs: getCardSpecialConfigs,
   };
 });

@@ -17,11 +17,15 @@
   justify-content: center;
 
   .pseudo-image {
+    top: 80px;
+    position: absolute;
     width: 70%;
     height: 70%;
   }
 
   .text {
+    top: 40px;
+    position: absolute;
     font-family: 'Cinzel', serif;
     font-size: 52px;
     font-weight: 700;
@@ -40,7 +44,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   box-sizing: border-box;
 
   color: #000;
@@ -48,13 +52,12 @@
 
   .scoring {
     z-index: 10;
-    position: absolute;
-    top: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    padding-top: 10px;
 
     font-family: "Cinzel", serif;
     font-size: 15px;
@@ -99,27 +102,78 @@
     }
   }
 
-  .special-text {
-    position: absolute;
-    top: 96px;
-    left: 50%;
-    transform: translateX(-50%);
+  .reward-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: -30px;
+    padding-top: 10px;
 
+    .minicard {
+      width: 25px;
+      height: 35px;
+      border: 2px solid #000;
+      border-radius: 4px;
+      filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
+    }
+
+    .minicard.index-0 {
+      transform: rotate(-15deg);
+      background: #ffffff;
+      z-index: 5;
+    }
+
+    .minicard.index-1 {
+      transform: translateY(-5px);
+      background: #aaaaaa;
+      z-index: 10;
+    }
+
+    .minicard.index-2 {
+      transform: rotate(15deg);
+      background: #777777;
+      z-index: 15;
+    }
+
+    .reward-text {
+      padding-left: 10px;
+      font-size: 30px;
+    }
+  }
+
+  .text {
     width: calc(100% - 22px);
 
     color: #2f2922;
 
     z-index: 10;
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 1.15;
     text-align: center;
     padding: 5px 9px;
     box-sizing: border-box;
+
+    .keep {
+      font-size: 22px;
+      font-weight: bold;
+    }
   }
 
-  .special-text,
+  .pseudo-image {
+    width: 45%;
+    z-index: 5;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
+  }
+
+  .no-text.pseudo-image {
+    width: 70%;
+  }
+
   .title-wrapper {
     box-sizing: border-box;
 
@@ -148,19 +202,8 @@
 
     text-shadow:
       0 1px 0 rgba(255, 255, 255, 0.85);
-  }
 
-  .pseudo-image {
-    position: absolute;
-    top: 90px;
-    z-index: 5;
-    aspect-ratio: 1 / 1;
-    width: 65%;
-    height: auto;
-    filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
-  }
 
-  .title-wrapper {
     position: absolute;
     left: 50%;
     bottom: 16px;
@@ -188,7 +231,7 @@
       padding: 0;
 
       font-family: "Lora", serif;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       line-height: 1.05;
       letter-spacing: 0.2px;
@@ -298,8 +341,8 @@
     // ORANGE
     --player-color: #ff922b;
     --player-border: #a84a00;
-    --player-bg-top: #f8c89a;
-    --player-bg-bottom: #fbe4ce;
+    --player-bg-top: #ff922b;
+    --player-bg-bottom: #f8c89a;
   }
 
   &.player-5 {
@@ -311,9 +354,19 @@
   }
 }
 
-.card.gift.front.special {
-  .pseudo-image {
-    top: 135px;
-    width: 50%;
+.reward-text {
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 white,
+    0px -1px 0 white,
+    1px -1px 0 white,
+    -1px 0px 0 white,
+    1px 0px 0 white,
+    -1px 1px 0 white,
+    0px 1px 0 white,
+    1px 1px 0 white;
+
+  .outlined-star {
+    font-size: 120%;
   }
 }
