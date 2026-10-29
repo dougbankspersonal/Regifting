@@ -56,18 +56,30 @@ define([
         "reward-text",
         ":" + cardConfig.reward + outlinedStarText,
       );
+      return rewardWrapperNode;
     }
-    return rewardWrapperNode;
+    return null;
   }
 
   function addImageNode(parent, cardConfig) {
     // Image.
-    var imageClasses = structuredClone(cardConfig.imageClasses);
-    var imageClasses = imageClasses.concat(
-      [cardConfig.text ? "has-text" : "no-text"].concat(
-        cardConfig.imageClasses,
-      ),
-    );
+    var imageClasses;
+    if (cardConfig.imageClasses) {
+      imageClasses = structuredClone(cardConfig.imageClasses);
+    } else {
+      imageClasses = [];
+    }
+    if (cardConfig.text) {
+      imageClasses = imageClasses.concat(["has-text"]);
+    } else {
+      imageClasses = imageClasses.concat(["no-text"]);
+    }
+    if (cardConfig.reward) {
+      imageClasses = imageClasses.concat(["has-reward"]);
+    } else {
+      imageClasses = imageClasses.concat(["no-reward"]);
+    }
+
     var imageNode = htmlUtils.addImage(parent, imageClasses, "gift-image");
     return imageNode;
   }
@@ -85,6 +97,17 @@ define([
       cardConfig.title,
     );
     return titleNode;
+  }
+
+  function addPlayerMarkers(parent, playerIndex) {
+    for (var i = 0; i < 2; i++) {
+      var classes = [
+        "player-marker",
+        "icon-player-" + playerIndex,
+        "index-" + i,
+      ];
+      htmlUtils.addImage(parent, classes, "player-marker-" + i);
+    }
   }
 
   function addCardFront(parent, index) {
@@ -112,6 +135,8 @@ define([
 
     addImageNode(cardFrontNode, cardConfig);
     addTitleNode(cardFrontNode, cardConfig);
+
+    addPlayerMarkers(cardFrontNode, cardConfig.playerIndex);
 
     return cardFrontNode;
   }

@@ -78,4 +78,28 @@
   background-image: url("../images/cards/giftcard.png");
 }
 
+.pseudo-image.icon-player-0 {
+  background-image: url("../images/cards/icon-player-0.png");
+}
+
+.pseudo-image.icon-player-1 {
+  background-image: url("../images/cards/icon-player-1.png");
+}
+
+.pseudo-image.icon-player-2 {
+  background-image: url("../images/cards/icon-player-2.png");
+}
+
+.pseudo-image.icon-player-3 {
+  background-image: url("../images/cards/icon-player-3.png");
+}
+
+.pseudo-image.icon-player-4 {
+  background-image: url("../images/cards/icon-player-4.png");
+}
+
+.pseudo-image.icon-player-5 {
+  background-image: url("../images/cards/icon-player-5.png");
+}
+
 /*# sourceMappingURL=images.css.map */

@@ -37,14 +37,14 @@ define([
       imageClasses: ["candle"],
       keep: "?",
       shame: 9,
-      text: '<span class="keep">Keep:</span><br>1 + # Candles Kept.',
+      text: '<span class="keep">Keep:</span><br>1 + # Candles Kept',
     },
     {
       title: "Handmade Sock",
       imageClasses: ["sock"],
       keep: "?",
       shame: 7,
-      text: '<span class="keep">Keep:</span><br>Unpaired: 2<br>Paired: 0.',
+      text: '<span class="keep">Keep:<br></span>Odd: 2/Even: 0',
     },
   ];
 
@@ -52,9 +52,9 @@ define([
     if (tier == 0) {
       return { keep: 1, shame: 6, reward: 1 };
     } else if (tier == 1) {
-      return { keep: 2, shame: 8, reward: 4 };
+      return { keep: 2, shame: 8, reward: 3 };
     } else if (tier == 2) {
-      return { keep: 3, shame: 10, reward: 9 };
+      return { keep: 3, shame: 10, reward: 7 };
     }
     console.assert(false, "Invalid tier: " + tier);
   }

@@ -50,14 +50,35 @@
   color: #000;
   position: relative;
 
+  .pseudo-image.player-marker {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
+    z-index: 10;
+  }
+
+  .pseudo-image.player-marker.index-0 {
+    bottom: 10px;
+    left: 10px;
+    transform: rotate(-15deg) scaleX(-1);
+  }
+
+  .pseudo-image.player-marker.index-1 {
+    bottom: 10px;
+    right: 10px;
+    transform: rotate(15deg);
+  }
+
   .scoring {
     z-index: 10;
+    height: 52px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding-top: 10px;
+    padding-top: 30px;
 
     font-family: "Cinzel", serif;
     font-size: 15px;
@@ -98,7 +119,13 @@
 
     .scoring-type.shame {
       right: 25px;
-      background: #863d48;
+      background-image: url("../images/cards/danger-blob.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: none;
+      color: #4f1f1f;
+      padding: 30px;
     }
   }
 
@@ -107,8 +134,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: -30px;
-    padding-top: 10px;
+    padding-top: 20px;
 
     .minicard {
       width: 25px;
@@ -116,23 +142,21 @@
       border: 2px solid #000;
       border-radius: 4px;
       filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
+      background: #aaaaaa;
     }
 
     .minicard.index-0 {
       transform: rotate(-15deg);
-      background: #ffffff;
       z-index: 5;
     }
 
     .minicard.index-1 {
       transform: translateY(-5px);
-      background: #aaaaaa;
       z-index: 10;
     }
 
     .minicard.index-2 {
       transform: rotate(15deg);
-      background: #777777;
       z-index: 15;
     }
 
@@ -144,16 +168,17 @@
 
   .text {
     width: calc(100% - 22px);
-
     color: #2f2922;
 
-    z-index: 10;
+    z-index: 20;
     font-family: Georgia, "Times New Roman", serif;
     font-size: 18px;
     font-weight: 700;
     line-height: 1.15;
     text-align: center;
-    padding: 5px 9px;
+    padding-top: 20px;
+    padding-left: 0px;
+    padding-right: 9px;
     box-sizing: border-box;
 
     .keep {
@@ -170,12 +195,31 @@
     filter: drop-shadow(4px 5px 6px rgba(0, 0, 0, 0.4));
   }
 
-  .no-text.pseudo-image {
+  .no-reward.no-text.pseudo-image {
+    padding-top: 20px;
     width: 70%;
+  }
+
+  .has-reward.pseudo-image {
+    width: 50%;
+  }
+
+  .pseudo-image.no-reward.has-text,
+  .pseudo-image.has-reward.no-text {
+    width: 45%;
+  }
+
+  .pseudo-image.no-reward.has-text {
+    padding-top: 10px;
+  }
+
+  .pseudo-image.has-reward.no-text {
+    padding-top: 10px;
   }
 
   .title-wrapper {
     box-sizing: border-box;
+    z-index: 20;
 
     /* light pewter / painted metal */
     background:
@@ -208,8 +252,6 @@
     left: 50%;
     bottom: 16px;
     transform: translateX(-50%);
-
-    z-index: 5;
 
     // size
     min-width: 120px;
